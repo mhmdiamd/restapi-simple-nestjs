@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  base:
+    driver: bridge
+services:
+  db:
+    image: postgres:alpine3.20
+    environment:
+      POSTGRES_USER: postgres # Overriding the default user
+      POSTGRES_PASSWORD: password # Overriding the default password
+      POSTGRES_DB: db_tes_dot_indonesia # Overriding the default database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - base
+volumes:
+  postgres_data:
